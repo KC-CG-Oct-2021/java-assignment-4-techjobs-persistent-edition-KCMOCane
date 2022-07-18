@@ -32,7 +32,9 @@ public class HomeController {
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
-
+        Iterable<Job> jobs;
+        jobs = jobRepository.findAll();
+        model.addAttribute("jobs", jobs);
         return "index";
     }
 
@@ -55,10 +57,11 @@ public class HomeController {
             model.addAttribute("skills", skillRepository.findAll());
             return "add";
         }
-        Optional<Employer> employerObj = employerRepository.findById(employerId);
-        Employer employer = (Employer) employerObj.get();
-        newJob.setEmployer(employer);
-
+        //Optional<Employer> employerObj = employerRepository.findById(employerId);
+        //Employer employer = (Employer) employerObj.get();
+        //newJob.setEmployer(employer);
+        Employer newEmployer = employerRepository.findById(employerId).orElse(new Employer());
+        newJob.setEmployer(newEmployer);
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
         jobRepository.save(newJob);
