@@ -1,7 +1,7 @@
 package org.launchcode.techjobs.persistent.models;
 
 import org.hibernate.loader.collection.OneToManyJoinWalker;
-import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
+import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
